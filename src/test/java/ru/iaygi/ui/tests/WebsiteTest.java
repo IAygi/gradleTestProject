@@ -93,21 +93,45 @@ public class WebsiteTest {
     }
 
     @Test
-    @DisplayName("Проверка галереи \"Дети\"")
-    public void childrenPage() {
+    @DisplayName("Проверка страницы Портфолио")
+    public void portfolioPage() {
 
-        step("Открыть галерею \"Дети\"", () -> {
-            open("/children/");
+        step("Открыть страницу Портфолио", () -> {
+            open("/portfolio/");
         });
 
         step("Проверить заголовок страницы", () -> {
             String title = $(By.className("page-title")).shouldBe(visible).getText();
-            assertEquals(title, "Дети");
+            assertEquals(title, "Портфолио");
+        });
+    }
+
+    @Test
+    @DisplayName("Проверка страницы Обо мне")
+    public void aboutPage() {
+
+        step("Открыть страницу Обо мне", () -> {
+            open("/about/");
         });
 
-//        step("Проверить наличие галереи", () -> {
-//            assert ($(By.className("elementor-image-gallery")).isDisplayed());
-//        });
+        step("Проверить заголовок страницы", () -> {
+            String title = $(By.className("page-title")).shouldBe(visible).getText();
+            assertEquals(title, "Обо мне");
+        });
+    }
+
+    @Test
+    @DisplayName("Проверка страницы Контакты")
+    public void contactsPage() {
+
+        step("Открыть страницу Контакты", () -> {
+            open("/contacts/");
+        });
+
+        step("Проверить заголовок страницы", () -> {
+            String title = $(By.className("page-title")).shouldBe(visible).getText();
+            assertEquals(title, "Контакты");
+        });
     }
 
     @Test
