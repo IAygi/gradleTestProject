@@ -3,7 +3,13 @@ pipeline {
     stages {
         stage('Clean') {
           steps {
-            sh 'gradle clean test'
+            sh 'chmod +x gradlew'
+            sh './gradlew clean'
+          }
+        }
+        stage('Test') {
+          steps {
+            sh './gradlew smoke_tests --no-daemon --warning-mode=all'
           }
         }
         stage('Allure Report') {
