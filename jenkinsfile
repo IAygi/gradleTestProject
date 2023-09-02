@@ -37,5 +37,17 @@ pipeline {
             ])
           }
         }
+		stage('Email') {
+            steps {
+                emailext([
+                        mimeType          : "text/html",
+                        subject           : 'На стенде ИФТ завершился прогон E2E-тестов',
+                        recipientProviders: [requestor()],
+                        body              : '''${SCRIPT, template="managed:AllureReportEmail"}''',
+                        attachLog         : false,
+                        to                : "innokentiy@ajgi.ru"
+                ])
+            }
+        }
     }
 }
