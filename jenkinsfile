@@ -19,8 +19,9 @@ pipeline {
             sh './gradlew ${TASKS} --no-daemon --warning-mode=all'
           }
         }
-        stage('Allure Report') {
-          steps {
+    }
+	post {
+        always {
             allure([
             includeProperties: false,
             jdk: '',
@@ -28,7 +29,9 @@ pipeline {
             reportBuildPolicy: 'ALWAYS',
             results: [[path: 'build/allure-results']]
             ])
-          }
+        }
+        failure {
+
         }
     }
 }
