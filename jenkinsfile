@@ -3,13 +3,7 @@ pipeline {
     stages {
         stage('Clean') {
           steps {
-            sh 'chmod +x gradlew'
-            sh './gradlew clean'
-          }
-        }
-        stage('Test') {
-          steps {
-            sh './gradlew test'
+            sh 'gradle clean test'
           }
         }
         stage('Allure Report') {
