@@ -1,0 +1,81 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.11.2'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    testImplementation (
+            'org.junit.jupiter:junit-jupiter-api:5.9.2',
+            'io.rest-assured:rest-assured:5.3.1',
+            'com.codeborne:selenide:6.16.0',
+            'io.qameta.allure:allure-junit5:2.23.0',
+            'io.qameta.allure:allure-selenide:2.23.0',
+            'org.assertj:assertj-core:3.24.2',
+            'org.slf4j:slf4j-simple:2.0.7',
+            'com.fasterxml.jackson.module:jackson-module-scala_3:2.15.2',
+            'com.github.javafaker:javafaker:1.0.2'
+    )
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    compileJava.options.encoding = 'UTF-8'
+    compileTestJava.options.encoding = 'UTF-8'
+    compileOnly 'org.projectlombok:lombok:1.18.28'
+    annotationProcessor 'org.projectlombok:lombok:1.18.28'
+    testCompileOnly 'org.projectlombok:lombok:1.18.28'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
+}
+
+tasks.withType(Test) {
+    systemProperties(System.getProperties())
+    useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+
+task smoke_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags("smoke")
+    }
+}
+
+task regression_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags("regression")
+    }
+}
+
+task ui_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags("uiTest")
+    }
+}
+
+task api_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags("apiTest")
+    }
+}
+
+allure {
+    autoconfigure = true
+    version = '2.17.2'
+
+    useJUnit5 {
+        version = '2.17.2'
+    }
+}
