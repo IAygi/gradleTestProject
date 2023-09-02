@@ -189,12 +189,16 @@ public class RestExecutor {
         requestBuilder.setAuth(authentication);
         setStaticRequestSpec(requestBuilder.build());
 
-        switch (requestType) {
-            case GET -> response = RestAssured.get(uri);
-            case POST -> response = RestAssured.post(uri);
-            case PUT -> response = RestAssured.put(uri);
-            case DELETE -> response = RestAssured.delete(uri);
-            case PATCH -> response = RestAssured.patch(uri);
+        if (requestType == Method.GET) {
+            response = RestAssured.get(uri);
+        } else if (requestType == Method.POST) {
+            response = RestAssured.post(uri);
+        } else if (requestType == Method.PUT) {
+            response = RestAssured.put(uri);
+        } else if (requestType == Method.DELETE) {
+            response = RestAssured.delete(uri);
+        } else if (requestType == Method.PATCH) {
+            response = RestAssured.patch(uri);
         }
 
         if (resetRequest) {
