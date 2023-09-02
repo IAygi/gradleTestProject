@@ -97,7 +97,7 @@ public class WebsiteTest {
     public void childrenPage() {
 
         step("Открыть галерею \"Дети\"", () -> {
-            open("/children");
+            open("/children/");
         });
 
         step("Проверить заголовок страницы", () -> {
