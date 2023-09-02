@@ -16,7 +16,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static com.codeborne.selenide.Condition.image;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
@@ -79,7 +79,7 @@ public class WebsiteTest {
         });
 
         step("Проверить заголовок страницы", () -> {
-            String title = $(By.className("page-title")).getText();
+            String title = $(By.className("page-title")).shouldBe(visible).getText();
             assertEquals(title, "Фотограф Татьяна Айги");
         });
 
@@ -101,7 +101,7 @@ public class WebsiteTest {
         });
 
         step("Проверить заголовок страницы", () -> {
-            String title = $(By.className("page-title")).getText();
+            String title = $(By.className("page-title")).shouldBe(visible).getText();
             assertEquals(title, "Дети");
         });
 
