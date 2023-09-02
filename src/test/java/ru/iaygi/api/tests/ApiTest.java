@@ -18,7 +18,7 @@ import static ru.iaygi.api.data.UserData.userRandom;
 import static ru.iaygi.helpers.Conditions.statusCode;
 
 @Severity(NORMAL)
-@Tag("apiTest")
+@Tag("api_test")
 @Tag("regression")
 @Epic("Users")
 @Feature("Работа с пользователями через API")
@@ -51,7 +51,7 @@ public class ApiTest extends TestBase {
                     .contains(tuple(user.login(), user.name(), user.surname()));
         });
 
-        step("удалить пользователя по login", () -> {
+        step("Удалить пользователя по login", () -> {
             restAssured.deleteUser(user.login()).shouldHave(statusCode(204));
         });
     }
@@ -146,7 +146,7 @@ public class ApiTest extends TestBase {
                     .contains(tuple(user.login(), surname));
         });
 
-        step("удалить пользователя по login", () -> {
+        step("Удалить пользователя по login", () -> {
             restAssured.deleteUser(user.login()).shouldHave(statusCode(204));
         });
     }
@@ -163,7 +163,7 @@ public class ApiTest extends TestBase {
                     .contains(tuple(user.login(), user.name(), user.surname()));
         });
 
-        step("удалить пользователя по login", () -> {
+        step("Удалить пользователя по login", () -> {
             restAssured.deleteUser(user.login()).shouldHave(statusCode(204));
         });
 

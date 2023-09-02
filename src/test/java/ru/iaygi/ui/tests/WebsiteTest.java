@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.iaygi.ui.EndPoints.baseUrl;
 
 @Severity(NORMAL)
-@Tag("uiTest")
+@Tag("ui_test")
 @Tag("regression")
 @Epic("WebSite")
 @Feature("Основная функциональность")

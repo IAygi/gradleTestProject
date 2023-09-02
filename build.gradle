@@ -41,7 +41,7 @@ tasks.withType(Test) {
 
     testLogging {
         lifecycle {
-            events "started", "skipped", "failed"
+            events "started", "skipped", "failed", "standard_error", "standard_out"
             exceptionFormat "short"
         }
     }
@@ -61,13 +61,13 @@ task regression_tests(type: Test) {
 
 task ui_tests(type: Test) {
     useJUnitPlatform {
-        includeTags("uiTest")
+        includeTags("ui_test")
     }
 }
 
 task api_tests(type: Test) {
     useJUnitPlatform {
-        includeTags("apiTest")
+        includeTags("api_test")
     }
 }
 
