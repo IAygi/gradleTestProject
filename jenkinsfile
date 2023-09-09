@@ -39,7 +39,7 @@ pipeline {
         }
 		stage('Email') {
             steps {
-             sh "java  \
+             sh "java " +
                 "-Dmessenger=email " +
                 "-Dmail.host=smtp.gmail.com " +
                 "-Dmail.port=465 " +
