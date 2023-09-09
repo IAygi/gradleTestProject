@@ -39,14 +39,21 @@ pipeline {
         }
 		stage('Email') {
             steps {
-                emailext([
-                        mimeType          : 'text/html',
-                        subject           : 'На стенде ИФТ завершился прогон E2E-тестов',
-                        recipientProviders: [requestor()],
-                        body              : 'Test Message',
-                        attachLog         : false,
-                        to                : 'innokentiy@ajgi.ru'
-                ])
+                java  \
+                "-Dmessenger=email" \
+                "-Dmail.host=smtp.gmail.com" \
+                "-Dmail.port=465" \
+                "-Dmail.username=grave1kro@gmail.com" \
+                "-Dmail.password=12345..." \
+                "-Dmail.to=innokentiy@ajgi.ru" \
+                "-Dproject.name=${JOB_BASE_NAME}" \
+                "-Dbuild.launch.name=Some release 2.0" \
+                "-Dbuild.env=https://prod.your.site" \
+                "-Dbuild.report.link=${BUILD_URL}" \
+                "-Dlang=en" \
+                "-Denable.chart=true" \
+                "-Dallure.report.folder=./allure-report/" \
+                -jar allure-notifications-2.2.1.jar
             }
         }
     }
