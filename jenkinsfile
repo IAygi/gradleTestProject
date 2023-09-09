@@ -40,7 +40,28 @@ pipeline {
 		stage('Email') {
             steps {
                 script{
-                   sh 'java "-DconfigFile=notifications/config.json" -jar notifications/allure-notifications-4.3.0.jar'
+					writeFile file: 'notifications/config.json', text: '{
+					  "base": {
+						"logo": "",
+						"project": "gradleTestProject",
+						"environment": "",
+						"comment": "",
+						"reportLink": "",
+						"language": "en",
+						"allureFolder": "build/reports/allure-report/allureReport/",
+						"enableChart": true
+					  },
+					  "mail": {
+						"host": "smtp.gmail.com",
+						"port": "465",
+						"username": "grave1kro@gmail.com",
+						"password": "pafmtynrfcjlcvzw",
+						"securityProtocol": "SSL",
+						"from": "grave1kro@gmail.com",
+						"recipient": "innokentiy@ajgi.ru"
+					  }
+					}'
+                    sh 'java "-DconfigFile=notifications/config.json" -jar notifications/allure-notifications-4.3.0.jar'
             }
             }
         }
