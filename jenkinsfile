@@ -39,7 +39,7 @@ pipeline {
         }
 		stage('Email') {
             steps {
-                java  \
+            sh "java  \
                 "-Dmessenger=email" \
                 "-Dmail.host=smtp.gmail.com" \
                 "-Dmail.port=465" \
@@ -53,7 +53,7 @@ pipeline {
                 "-Dlang=en" \
                 "-Denable.chart=true" \
                 "-Dallure.report.folder=./allure-report/" \
-                -jar allure-notifications-2.2.1.jar
+                "-jar allure-notifications-2.2.1.jar"
             }
         }
     }
