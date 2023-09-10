@@ -15,6 +15,7 @@ public class TestBaseUi {
             put("name", "Website Test");
             put("sessionTimeout", "30m");
             put("enableVNC", false);
+            put("screenResolution", "1920x1080x24");
             put("env", new ArrayList<String>() {{
                 add("TZ=UTC");
             }});

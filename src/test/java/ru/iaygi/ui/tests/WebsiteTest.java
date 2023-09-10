@@ -6,10 +6,13 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import ru.iaygi.ui.data.Selectors;
 import ru.iaygi.ui.data.TestData;
+import com.codeborne.selenide.junit5.TextReportExtension;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +25,7 @@ import static io.qameta.allure.SeverityLevel.CRITICAL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.iaygi.ui.data.EndPoints.baseUrl;
 
+@ExtendWith({TextReportExtension.class})
 @Severity(CRITICAL)
 @Tag("ui_test")
 @Tag("regression")
@@ -40,6 +44,7 @@ public class WebsiteTest extends TestBaseUi {
     public void init() throws IOException {
         initDriver();
         driver = new RemoteWebDriver(new URL("http://194.67.119.85:4444/wd/hub"), options);
+        // driver.manage().window().setSize(new Dimension(1920, 1080));
         WebDriverRunner.setWebDriver(driver);
     }
 
