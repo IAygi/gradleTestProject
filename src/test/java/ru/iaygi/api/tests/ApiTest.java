@@ -22,7 +22,7 @@ import static ru.iaygi.helpers.Conditions.statusCode;
 @Tag("regression")
 @Epic("Users")
 @Feature("Работа с пользователями через API")
-public class ApiTest extends TestBase {
+public class ApiTest extends TestBaseApi {
 
     UsersDTO user;
 
@@ -92,7 +92,7 @@ public class ApiTest extends TestBase {
     @DisplayName("Получение несуществующего пользователя по login")
     @Description("Проверить, что при получении несуществующего пользователя по login ответ 404")
     void getNotRealUser() {
-        String login = userRandom().login() + "_not_real";
+        String login = userRandom().login() + "-not-real";
 
         step("Получить пользователя по login", () -> {
             restAssured.getUser(login).shouldHave(statusCode(404));
@@ -183,7 +183,7 @@ public class ApiTest extends TestBase {
     @DisplayName("Удаление несуществующего пользователя по login")
     @Description("Проверить, что при удалении несуществующего пользователя по login ответ 404")
     void deleteUserByLogin() {
-        String login = userRandom().login() + "_not_real";
+        String login = userRandom().login() + "-not-real";
 
         step("Удалить пользователя по login", () -> {
             restAssured.deleteUser(login).shouldHave(statusCode(404));

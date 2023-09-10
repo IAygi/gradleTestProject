@@ -7,54 +7,38 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import ru.iaygi.ui.data.Selectors;
+import ru.iaygi.ui.data.TestData;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
-import static io.qameta.allure.SeverityLevel.NORMAL;
+import static io.qameta.allure.SeverityLevel.CRITICAL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static ru.iaygi.ui.EndPoints.baseUrl;
+import static ru.iaygi.ui.data.EndPoints.baseUrl;
 
-@Severity(NORMAL)
+@Severity(CRITICAL)
 @Tag("ui_test")
 @Tag("regression")
 @Epic("WebSite")
 @Feature("Основная функциональность")
-public class WebsiteTest {
+public class WebsiteTest extends TestBaseUi {
 
     private static RemoteWebDriver driver;
 
     @BeforeAll
     public static void setUp() {
         Configuration.baseUrl = baseUrl;
-        // Configuration.holdBrowserOpen = true;
     }
 
     @BeforeEach
-    public void initDriver() throws IOException {
-        ChromeOptions options = new ChromeOptions();
-        options.setCapability("browserVersion", "113.0");
-        options.setCapability("selenoid:options", new HashMap<String, Object>() {{
-            put("name", "Website Test");
-            put("sessionTimeout", "30m");
-            put("enableVNC", false);
-            put("env", new ArrayList<String>() {{
-                add("TZ=UTC");
-            }});
-            put("labels", new HashMap<String, Object>() {{
-                put("manual", "true");
-            }});
-            put("enableVideo", true);
-        }});
+    public void init() throws IOException {
+        initDriver();
         driver = new RemoteWebDriver(new URL("http://194.67.119.85:4444/wd/hub"), options);
         WebDriverRunner.setWebDriver(driver);
     }
@@ -63,11 +47,6 @@ public class WebsiteTest {
     public void stopDriver() {
         driver.quit();
     }
-
-//    @AfterAll
-//    public static void cleanUp() {
-//        System.out.println("After All cleanUp() method called");
-//    }
 
     @Test
     @Tag("smoke")
@@ -79,16 +58,16 @@ public class WebsiteTest {
         });
 
         step("Проверить заголовок страницы", () -> {
-            String title = $(By.className("page-title")).shouldBe(visible).getText();
+            String title = $(By.className(Selectors.pageTitle)).shouldBe(visible).getText();
             assertEquals(title, "Фотограф Татьяна Айги");
         });
 
 //        step("Проверить наличие изображения в главной галерее", () -> {
-//            $(By.className("swiper-slide-image")).shouldHave(image);
+//            $(By.className(Selectors.swiperSlideImage)).shouldHave(image);
 //        });
 //
 //        step("Проверить наличие подгалереи", () -> {
-//            assert ($(By.className("foogallery")).isDisplayed());
+//            assert ($(By.className(Selectors.fooGallery)).isDisplayed());
 //        });
     }
 
@@ -101,7 +80,7 @@ public class WebsiteTest {
         });
 
         step("Проверить заголовок страницы", () -> {
-            String title = $(By.className("page-title")).shouldBe(visible).getText();
+            String title = $(By.className(Selectors.pageTitle)).shouldBe(visible).getText();
             assertEquals(title, "Портфолио");
         });
     }
@@ -115,7 +94,7 @@ public class WebsiteTest {
         });
 
         step("Проверить заголовок страницы", () -> {
-            String title = $(By.className("page-title")).shouldBe(visible).getText();
+            String title = $(By.className(Selectors.pageTitle)).shouldBe(visible).getText();
             assertEquals(title, "Обо мне");
         });
     }
@@ -129,7 +108,7 @@ public class WebsiteTest {
         });
 
         step("Проверить заголовок страницы", () -> {
-            String title = $(By.className("page-title")).shouldBe(visible).getText();
+            String title = $(By.className(Selectors.pageTitle)).shouldBe(visible).getText();
             assertEquals(title, "Контакты");
         });
     }
@@ -143,8 +122,8 @@ public class WebsiteTest {
         });
 
         step("Ввести логин и пароль", () -> {
-            $(By.id("user_login")).setValue("selenide");
-            $(By.id("user_pass")).setValue("junit5");
+            $(By.id("user_login")).setValue(TestData.userLogin); // Добавить парамс из пайплайна!!!!!!!!!!!!!!!!
+            $(By.id("user_pass")).setValue(TestData.userPass);
             $(By.id("btn_login")).click();
         });
 
@@ -160,22 +139,22 @@ public class WebsiteTest {
 
         step("Заполнить форму", () -> {
             $(By.id("user_name")).scrollIntoView(true).setValue("test_name");
-            $(By.id("phone_number")).setValue("8-911-111-11-11");
-            $(By.id("e_mail")).setValue("mail@mail.com");
-            $(By.name("message")).setValue("Test message");
+            $(By.id("phone_number")).setValue(TestData.phoneNumber);
+            $(By.id("e_mail")).setValue(TestData.Email);
+            $(By.name("message")).setValue(TestData.message);
         });
 
         step("Перейти на экран подтверждения выбора", () -> {
-            $(By.id("btn_id_main")).click();
+            $(By.id(Selectors.btnIdMain)).click();
         });
 
         step("Подтвердить выбор", () -> {
-            $(By.id("btn_go")).click();
+            $(By.id(Selectors.btnGo)).click();
         });
 
         step("Проверка создания заказа", () -> {
-            String txt = $(By.id("txt_result")).getText().substring(0, 37);
-            assertEquals(txt, "Ваш заказ на сумму 400 ₽ сформирован!");
+            String txt = $(By.id(Selectors.txtResult)).getText().substring(0, 37);
+            assertEquals(txt, TestData.checkOrder);
         });
     }
 }

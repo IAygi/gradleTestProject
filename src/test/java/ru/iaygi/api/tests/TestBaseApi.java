@@ -4,9 +4,9 @@ import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
 import ru.iaygi.api.rest.RestMethods;
 
-import static ru.iaygi.ui.EndPoints.baseUrl;
+import static ru.iaygi.ui.data.EndPoints.baseUrl;
 
-public class TestBase {
+public class TestBaseApi {
 
     static RestMethods restAssured;
 

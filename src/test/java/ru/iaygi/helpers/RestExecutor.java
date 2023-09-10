@@ -4,7 +4,6 @@ import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.authentication.AuthenticationScheme;
 import io.restassured.authentication.NoAuthScheme;
-import io.restassured.builder.MultiPartSpecBuilder;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.config.EncoderConfig;
 import io.restassured.config.RestAssuredConfig;
@@ -132,15 +131,6 @@ public class RestExecutor {
 
     public RestExecutor contentType(ContentType contentType) {
         requestBuilder.setContentType(contentType);
-
-        return this;
-    }
-
-    public RestExecutor setSendFile(String name, String fileName, String fileType, String text) {
-        MultiPartSpecBuilder multipart = new MultiPartSpecBuilder(text)
-                .header("Content-Disposition", "form-data; name=\"" + name + "\"; filename=\"" + fileName + "\"")
-                .header("Content-Type", fileType);
-        requestBuilder.addMultiPart(multipart.build());
 
         return this;
     }

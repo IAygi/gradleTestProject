@@ -3,7 +3,7 @@ package ru.iaygi.api.rest;
 import ru.iaygi.dto.UpdateUserDTO;
 import ru.iaygi.dto.UsersDTO;
 import ru.iaygi.helpers.RestExecutor;
-import ru.iaygi.ui.EndPoints;
+import ru.iaygi.ui.data.EndPoints;
 
 import static io.restassured.http.ContentType.JSON;
 

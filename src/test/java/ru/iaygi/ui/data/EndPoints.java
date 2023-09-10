@@ -1,4 +1,4 @@
-package ru.iaygi.ui;
+package ru.iaygi.ui.data;
 
 public class EndPoints {
     public static final String baseUrl = "https://tatyana-aygi.ru";

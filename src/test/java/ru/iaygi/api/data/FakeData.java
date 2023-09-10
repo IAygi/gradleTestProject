@@ -7,22 +7,26 @@ public class FakeData {
     private static final Faker faker = new Faker();
 
     public static String login() {
-        return faker.name().username();
+        return fakerResult(faker.name().username());
     }
 
     public static String firstName() {
-        return faker.name().firstName();
+        return fakerResult(faker.name().firstName());
     }
 
     public static String lastName() {
-        return faker.name().lastName();
+        return fakerResult(faker.name().lastName());
     }
 
     public static String cityName() {
-        return faker.address().city();
+        return fakerResult(faker.address().city());
     }
 
     public static int number() {
         return faker.number().numberBetween(18, 60);
+    }
+
+    public static String fakerResult(String result) {
+        return result.replaceAll("[.^=\"':,]", "-");
     }
 }
