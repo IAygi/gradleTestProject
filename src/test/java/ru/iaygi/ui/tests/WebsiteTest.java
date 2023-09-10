@@ -72,6 +72,7 @@ public class WebsiteTest extends TestBaseUi {
     }
 
     @Test
+    @Tag("smoke")
     @DisplayName("Проверка страницы Портфолио")
     public void portfolioPage() {
 
@@ -86,6 +87,7 @@ public class WebsiteTest extends TestBaseUi {
     }
 
     @Test
+    @Tag("smoke")
     @DisplayName("Проверка страницы Обо мне")
     public void aboutPage() {
 
@@ -100,6 +102,7 @@ public class WebsiteTest extends TestBaseUi {
     }
 
     @Test
+    @Tag("smoke")
     @DisplayName("Проверка страницы Контакты")
     public void contactsPage() {
 
