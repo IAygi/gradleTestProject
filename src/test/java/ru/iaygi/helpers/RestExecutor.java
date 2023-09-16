@@ -39,7 +39,6 @@ public class RestExecutor {
         setRelaxedHTTPSValidation();
     }
 
-    @Step("Ответ сервера содержит {condition}")
     public RestExecutor shouldHave(Condition condition) {
         condition.check(response);
         return this;
