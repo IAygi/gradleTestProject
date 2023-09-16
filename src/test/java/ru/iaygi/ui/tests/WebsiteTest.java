@@ -2,6 +2,7 @@ package ru.iaygi.ui.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.junit5.TextReportExtension;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -11,10 +12,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import ru.iaygi.ui.objects.MainPageObjects;
 import ru.iaygi.ui.data.Selectors;
-import ru.iaygi.ui.data.TestData;
-import com.codeborne.selenide.junit5.TextReportExtension;
+import ru.iaygi.ui.objects.MainPageObjects;
 import ru.iaygi.ui.objects.OrderPageObjects;
 
 import java.io.IOException;

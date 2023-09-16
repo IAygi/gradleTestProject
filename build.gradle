@@ -16,14 +16,15 @@ tasks.withType(JavaCompile) {
 
 dependencies {
     testImplementation (
-            'org.junit.jupiter:junit-jupiter-api:5.9.2',
+            'org.junit.jupiter:junit-jupiter:5.9.2',
             'io.rest-assured:rest-assured:5.3.1',
             'com.codeborne:selenide:6.16.0',
             'io.qameta.allure:allure-junit5:2.23.0',
             'io.qameta.allure:allure-selenide:2.23.0',
             'org.assertj:assertj-core:3.24.2',
             'com.fasterxml.jackson.module:jackson-module-scala_3:2.15.2',
-            'com.github.javafaker:javafaker:1.0.2'
+            'com.github.javafaker:javafaker:1.0.2',
+            'org.apache.commons:commons-lang3:3.12.0'
     )
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
     testRuntimeOnly 'org.slf4j:slf4j-simple:2.0.6'
