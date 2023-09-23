@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-            SMTP_PASS = credentials("SMTP_PASS")
+            SMTP_PASS = "txt"
         }
 	parameters {
 	choice(
