@@ -54,7 +54,7 @@ pipeline {
 		stage('Email Report') {
             steps {
                 script{
-					writeFile file: "notifications/config.json", text: "{\"base\":{\"logo\":\"\",\"project\":\"${JOB_BASE_NAME}\",\"environment\":\"https://tatyana-aygi.ru\",\"comment\":\"Was launched ${TASKS} in Jenkins\",\"reportLink\":\"${BUILD_URL}\",\"language\":\"en\",\"allureFolder\":\"./allure-report/\",\"enableChart\":true},\"mail\":{\"host\":\"smtp.gmail.com\",\"port\":\"465\",\"username\":\"grave1kro@gmail.com\",\"password\":\"pafmtynrfcjlcvzw\",\"securityProtocol\":\"SSL\",\"from\":\"grave1kro@gmail.com\",\"recipient\":\"${EMAIL}\"}}"
+					writeFile file: "notifications/config.json", text: "{\"base\":{\"logo\":\"\",\"project\":\"${JOB_BASE_NAME}\",\"environment\":\"https://tatyana-aygi.ru\",\"comment\":\"Was launched ${TASKS} in Jenkins\",\"reportLink\":\"${BUILD_URL}\",\"language\":\"en\",\"allureFolder\":\"./allure-report/\",\"enableChart\":true},\"mail\":{\"host\":\"smtp.gmail.com\",\"port\":\"465\",\"username\":\"grave1kro@gmail.com\",\"password\":\"pafmtynrfcjlcvzw\",\"securityProtocol\":\"SSL\",\"from\":\"innokaygi@gmail.com\",\"recipient\":\"${EMAIL}\"}}"
                     sh 'java "-DconfigFile=notifications/config.json" -jar notifications/allure-notifications-4.3.0.jar'
             }
             }

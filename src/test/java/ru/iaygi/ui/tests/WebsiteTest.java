@@ -120,6 +120,7 @@ public class WebsiteTest extends TestBaseUi {
     }
 
     @Test
+    @Tag("smoke")
     @DisplayName("Проверка создания заказа")
     @Description("Проверить корректное создание заказа на странице Галерея")
     public void createOrder() {
