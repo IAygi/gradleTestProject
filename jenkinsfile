@@ -11,6 +11,11 @@ pipeline {
 		choices: ['true', 'false'],
 		description: 'Отображение экрана браузера в Selenoid'
 		)
+	choice(
+		name: 'VIDEO_ENABLED',
+		choices: ['false', 'true'],
+		description: 'Запись видео в Selenoid'
+		)
 	}
     stages {
         stage('Clean') {
@@ -23,7 +28,7 @@ pipeline {
           steps {
 			script {
 			try {
-				sh './gradlew ${TASKS} -Dvnc_enabled=${VNC_ENABLED} --no-daemon --warning-mode=all'
+				sh './gradlew ${TASKS} -Dvnc_enabled=${VNC_ENABLED} -Dvideo_enabled=${VIDEO_ENABLED} --no-daemon --warning-mode=all'
 			}
 			catch (Exception e) {
 				println("Error ${e}")

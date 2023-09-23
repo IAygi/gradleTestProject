@@ -23,7 +23,7 @@ public class TestBaseUi {
             put("labels", new HashMap<String, Object>() {{
                 put("manual", "true");
             }});
-            put("enableVideo", true);
+            put("enableVideo", TestData.enableVideo);
         }});
     }
 }

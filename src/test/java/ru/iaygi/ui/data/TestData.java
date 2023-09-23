@@ -8,6 +8,7 @@ public class TestData {
     public static final String userLogin = System.getProperty("user_login", "selenide");
     public static final String userPass = System.getProperty("user_pass", "junit5");
     public static boolean enableVNC = setVnc();
+    public static boolean enableVideo = setVideo();
 
     private static boolean setVnc() {
         String enableVnc = System.getProperty("vnc_enabled", "true");
@@ -15,5 +16,13 @@ public class TestData {
             return false;
         }
         return true;
+    }
+
+    private static boolean setVideo() {
+        String enableVideo = System.getProperty("video_enabled", "false");
+        if (enableVideo.equals("true")) {
+            return true;
+        }
+        return false;
     }
 }
