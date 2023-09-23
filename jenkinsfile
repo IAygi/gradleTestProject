@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+            SMTP_PASS = credentials("SMTP_PASS")
+        }
 	parameters {
 	choice(
 		name: 'TASKS',
