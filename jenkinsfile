@@ -6,6 +6,11 @@ pipeline {
 		choices: ['smoke_tests', 'regression_tests', 'ui_tests', 'api_tests', 'test'],
 		description: 'Выбор тестового прогона'
 		)
+	choice(
+		name: 'VNC_ENABLED',
+		choices: ['true', 'false'],
+		description: 'Отображение экрана браузера в Selenoid'
+		)
 	}
     stages {
         stage('Clean') {
@@ -18,7 +23,7 @@ pipeline {
           steps {
 			script {
 			try {
-				sh './gradlew ${TASKS} --no-daemon --warning-mode=all'
+				sh './gradlew ${TASKS} -Dvnc_enabled=${VNC_ENABLED} --no-daemon --warning-mode=all'
 			}
 			catch (Exception e) {
 				println("Error ${e}")

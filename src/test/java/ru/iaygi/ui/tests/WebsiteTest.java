@@ -38,7 +38,6 @@ public class WebsiteTest extends TestBaseUi {
     private static RemoteWebDriver driver;
     private static MainPageObjects mainPageObjects;
     private static OrderPageObjects orderPageObjects;
-    private final boolean selenoid = true;
 
     @BeforeAll
     public static void setUp() {
@@ -51,12 +50,8 @@ public class WebsiteTest extends TestBaseUi {
     public void init() throws IOException {
         initDriver();
         driver = new RemoteWebDriver(new URL("http://194.67.119.85:4444/wd/hub"), options);
-        if (!selenoid) {
-            driver.manage().window().setSize(new Dimension(1920, 1080));
-        }
-        if (selenoid) {
-            WebDriverRunner.setWebDriver(driver);
-        }
+        driver.manage().window().setSize(new Dimension(1920, 1080));
+        WebDriverRunner.setWebDriver(driver);
     }
 
     @AfterEach
@@ -72,10 +67,8 @@ public class WebsiteTest extends TestBaseUi {
 
         mainPageObjects.openMainPage();
         mainPageObjects.checkPageTitle("Фотограф Татьяна Айги");
-        if (!selenoid) {
-            mainPageObjects.checkMainGallery();
-            mainPageObjects.checkSubGallery();
-        }
+        mainPageObjects.checkMainGallery();
+        mainPageObjects.checkSubGallery();
     }
 
     @Test
