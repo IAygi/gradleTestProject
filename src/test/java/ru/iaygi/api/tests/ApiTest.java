@@ -221,6 +221,7 @@ public class ApiTest extends TestBaseApi {
 
     @ParameterizedTest(name = "Создание пользователя с валидным логином: {0}")
     @MethodSource("validValues")
+    @DisplayName("ParameterizedTest: ")
     @Description("Проверить, что пользователь создаётся с валидным логином")
     void createUserWithValidLogin(String key, String value) {
         step("Создать пользователя", () -> {
@@ -240,6 +241,7 @@ public class ApiTest extends TestBaseApi {
 
     @ParameterizedTest(name = "Создание пользователя с невалидным логином: {0}")
     @MethodSource("invalidValues")
+    @DisplayName("ParameterizedTest: ")
     @Description("Проверить, что пользователь не создаётся с невалидным логином")
     void createUserWithInvalidLogin(String key, String value) {
         step("Создать пользователя", () -> {
