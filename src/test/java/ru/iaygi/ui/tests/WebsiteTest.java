@@ -59,9 +59,9 @@ public class WebsiteTest extends TestBaseUi {
         driver.quit();
     }
 
-    @RepeatedTest(value = 2, name = "{displayName}Проверка главной страницы {currentRepetition}/{totalRepetitions}")
+    @RepeatedTest(value = 2, name = "Проверка главной страницы {currentRepetition}/{totalRepetitions}")
     @Tag("smoke")
-    @DisplayName(" ")
+    @DisplayName("RepeatedTest: ")
     @Description("Проверить отображение на главной странице заголовка, галереи и подгалереи")
     public void mainPage() {
 
