@@ -1,6 +1,5 @@
 package ru.iaygi.helpers;
 
-import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.authentication.AuthenticationScheme;
 import io.restassured.authentication.NoAuthScheme;

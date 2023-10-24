@@ -135,4 +135,43 @@ public class WebsiteTest extends TestBaseUi {
                 .approveChoice()
                 .checkOrderCreation();
     }
+
+    @Test
+    @Tag("smoke")
+    @DisplayName("Проверка создания заказа")
+    @Description("Проверить корректное создание заказа на странице Галерея")
+    public void createNewOrder() {
+
+        step("Открыть страницу 'Галерея'", () -> {
+            orderPageObjects.openGallery();
+        });
+
+        step("Ввести логин и пароль", () -> {
+            orderPageObjects.setCredentials();
+        });
+
+        step("Закрыть модальное окно", () -> {
+            orderPageObjects.closeModalWindow();
+        });
+
+        step("Выбрать фотографии", () -> {
+            orderPageObjects.checkPhotos();
+        });
+
+        step("Заполнить форму", () -> {
+            orderPageObjects.fillingForm();
+        });
+
+        step("Перейти на экран подтверждения выбора", () -> {
+            orderPageObjects.openApprovePage();
+        });
+
+        step("Подтвердить выбор", () -> {
+            orderPageObjects.approveChoice();
+        });
+
+        step("Проверка создания заказа", () -> {
+            orderPageObjects.checkOrderCreation();
+        });
+    }
 }
