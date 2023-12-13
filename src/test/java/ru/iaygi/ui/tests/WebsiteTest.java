@@ -59,6 +59,9 @@ public class WebsiteTest extends TestBaseUi {
         driver.quit();
     }
 
+    /*
+     * Page Object Design Pattern
+     */
     @RepeatedTest(value = 2, name = "Проверка главной страницы {currentRepetition}/{totalRepetitions}")
     @Tag("smoke")
     @DisplayName("RepeatedTest: ")
@@ -71,6 +74,9 @@ public class WebsiteTest extends TestBaseUi {
         mainPageObjects.checkSubGallery();
     }
 
+    /*
+     * Allure Steps
+     */
     @Test
     @Tag("smoke")
     @DisplayName("Проверка страницы Портфолио")
@@ -119,6 +125,9 @@ public class WebsiteTest extends TestBaseUi {
         });
     }
 
+    /*
+     * Fluent/Chain of invocations Design Pattern
+     */
     @Test
     @Tag("smoke")
     @DisplayName("Проверка создания заказа")
@@ -136,6 +145,9 @@ public class WebsiteTest extends TestBaseUi {
                 .checkOrderCreation();
     }
 
+    /*
+     * Allure Steps & Page Object
+     */
     @Test
     @Tag("smoke")
     @DisplayName("Проверка создания заказа")

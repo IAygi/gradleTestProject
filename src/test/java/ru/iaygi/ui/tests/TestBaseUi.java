@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TestBaseUi {
-    ChromeOptions options;
+    public ChromeOptions options;
 
     public void initDriver() {
         options = new ChromeOptions();

@@ -8,7 +8,7 @@ import static ru.iaygi.ui.data.EndPoints.baseUrl;
 
 public class TestBaseApi {
 
-    static RestMethods restAssured;
+    public static RestMethods restAssured;
 
     @BeforeAll
     public static void init() {

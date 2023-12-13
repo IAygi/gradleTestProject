@@ -4,6 +4,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
+import io.restassured.http.ContentType;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,8 +18,10 @@ import java.util.stream.Stream;
 
 import static io.qameta.allure.Allure.step;
 import static io.qameta.allure.SeverityLevel.NORMAL;
+import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
+import static org.hamcrest.Matchers.hasItem;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static ru.iaygi.api.data.UserData.userRandom;
 import static ru.iaygi.helpers.Conditions.statusCode;
@@ -30,7 +33,7 @@ import static ru.iaygi.helpers.Conditions.statusCode;
 @Feature("Работа с пользователями через API")
 public class ApiTest extends TestBaseApi {
 
-    UsersDTO user;
+    private UsersDTO user;
     private static final String latChars = "abcdefghijklmnopqrstuvwxyz";
 
     private static Stream<Arguments> validValues() {
@@ -253,5 +256,24 @@ public class ApiTest extends TestBaseApi {
             assertThat(res).extracting("login", "name")
                     .doesNotContain(tuple(user.login(), value));
         });
+    }
+
+    /*
+     * Базовая реализация
+     */
+    @Test
+    @Tag("smoke")
+    @DisplayName("Получение списка пользователей")
+    @Description("Проверить корректное получение списка пользователей")
+    void getAllUsersSimple() {
+        given().
+                log().all().
+                contentType(ContentType.JSON).
+                when().
+                get("/test_api/users.php").
+                then().
+                log().all().
+                assertThat().statusCode(200).
+                and().body("login", hasItem("admin"));
     }
 }
